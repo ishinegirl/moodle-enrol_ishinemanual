@@ -306,8 +306,8 @@ class enrol_ishinemanual_plugin extends enrol_plugin {
         raise_memory_limit(MEMORY_HUGE);
 
         $trace->output('Verifying ishinemanual enrolment expiration...');
-
         $params = array('now1'=>time(),'now2'=>time(), 'usersuspended'=>ENROL_USER_SUSPENDED, 'courselevel'=>CONTEXT_COURSE);
+
         $coursesql = "";
         if ($courseid) {
             $coursesql = "AND e.courseid = :courseid";
