@@ -516,6 +516,31 @@ function enrol_ishinemanual_get_startdates($labels=true)
     $today = make_timestamp($currentyear, $currentmonth, $currentday, 0, 0, 0);
 
     $timestamps[] = $today;
+
+    //get end day of current month and add it
+    //this is just a hack. for now.
+    switch($currentmonth){
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+            $endday=31;
+            break;
+        case 2:
+            $endday=28;
+            if($currentyear % 4 ==0){$endday++;}
+            break;
+        default:
+            $endday=30;
+    }
+    while($currentday<$endday){
+        $currentday++;
+        $timestamps[] = make_timestamp($currentyear, $currentmonth, $currentday, 0, 0, 0);
+    }
+
     for ($i = -1; $i < 12; $i++) {
         $usemonth = $currentmonth + $i;
         $useyear = $currentyear;
